@@ -87,8 +87,58 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Just Working on a Project',
+    date: 'Jan 1st, 1922',
+    firstParagraph: `Let's see if it works. `,
+  
+    secondParagraph: `Hopefully it works. `,
+  
+    thirdParagraph: `I think it will work.`
   }
 ];
+
+
+
+function articleMaker(articleObj) {
+  const articleWrapper = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const articleParOne = document.createElement('p');
+  const articleParTwo = document.createElement('p');
+  const articleParThree = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  articleWrapper.classList.add('article');
+  articleDate.classList.add('date');
+  expandButton.classList.add('expandButton');
+
+  articleWrapper.appendChild(articleTitle);
+  articleWrapper.appendChild(articleDate);
+  articleWrapper.appendChild(articleParOne);
+  articleWrapper.appendChild(articleParTwo);
+  articleWrapper.appendChild(articleParThree);
+  articleWrapper.appendChild(expandButton);
+
+  articleTitle.textContent = articleObj.title;
+  articleDate.textContent = articleObj.date;
+  articleParOne.textContent = articleObj.firstParagraph;
+  articleParTwo.textContent = articleObj.secondParagraph;
+  articleParThree.textContent = articleObj.thirdParagraph;
+  expandButton.textContent = '+';
+
+  expandButton.addEventListener('click', () => {
+    articleWrapper.classList.toggle('article-open');
+  })
+
+  return articleWrapper;
+}
+
+data.forEach(article => {
+  document.querySelector('div.articles').appendChild(articleMaker(article));
+})
+
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
